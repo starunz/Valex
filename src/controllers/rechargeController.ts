@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 
 import rechargeSchema from "../schemas/rechargeSchema.js";
 import * as errorTypes from "../error/errorTypes.js";
-import * as existingCard from "../utils/existingCardUtils";
+import * as existingCard from "../utils/existingCardUtils.js";
 import * as checkingEmployee from "../utils/checkingEmployeeUtils.js";
 import * as expirationDate from "../utils/expirationDate.js";
 import * as rechargeServices from "../services/rechargeServices.js";

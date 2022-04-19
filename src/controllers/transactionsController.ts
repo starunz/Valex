@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import * as existingCard from "../utils/existingCardUtils.js";
-import * as cardBalance from "../utils/cardBalance.js";
+import * as cardBalance from "../utils/cardBalanceUtils.js";
 
 export async function transactions(req: Request, res: Response) {
     const { cardId } = req.params;
