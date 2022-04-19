@@ -23,6 +23,8 @@ export async function purchase(req: Request, res: Response) {
     const business = await purchaseServices.checkingBusiness(
         Number(businessId)
     );
+
+    purchaseServices.checkingBusinessType(card.type, business.type);
 }
 
 function validatePurchase(body: any) {

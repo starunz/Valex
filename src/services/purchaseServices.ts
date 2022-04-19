@@ -16,3 +16,10 @@ export async function checkingBusiness(businessId: number) {
   
     return business;
 }
+
+export function checkingBusinessType(cardType: string, businessType: string) {
+    if (cardType !== businessType)
+      throw errorTypes.conflict(
+        "Este tipo de cartão não pode ser utilizado nesta empresa"
+      );
+}
