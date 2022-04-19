@@ -1,4 +1,5 @@
 import * as errorTypes from "../error/errorTypes.js";
+import * as cardRepository from "../repositories/cardRepository.js";
 
 import bcrypt from "bcrypt";
 
@@ -16,4 +17,12 @@ export function encryptPassword(password: string) {
     const passwordHash = bcrypt.hashSync(password, 10);
   
     return passwordHash;
+}
+
+export async function activateCard(
+    cardId: number,
+    password: string,
+    isBlocked: boolean
+) {
+    await cardRepository.update(cardId, { password, isBlocked });
 }

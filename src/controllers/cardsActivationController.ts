@@ -21,6 +21,16 @@ export async function cardActivation(req: Request, res: Response) {
     const passwordHash = cardsActivationServices.encryptPassword(password);
 
     expirationDate.checkingExpirationDate(card.expirationDate);
+
+    const isBlocked = false;
+
+    await cardsActivationServices.activateCard(
+        Number(cardId),
+        passwordHash,
+        isBlocked
+    );
+
+    res.sendStatus(201);
 }
 
 function validateCardActivation(body: any) {
