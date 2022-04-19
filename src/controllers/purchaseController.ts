@@ -19,6 +19,10 @@ export async function purchase(req: Request, res: Response) {
     expirationDate.checkingExpirationDate(card.expirationDate);
 
     purchaseServices.checkingPassword(password, card.password);
+
+    const business = await purchaseServices.checkingBusiness(
+        Number(businessId)
+    );
 }
 
 function validatePurchase(body: any) {
