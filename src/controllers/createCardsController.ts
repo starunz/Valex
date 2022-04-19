@@ -21,11 +21,28 @@ export async function creating(req: Request, res: Response) {
         cardNum, 
         formattedName, 
         expirationDate, 
-        cvv, 
         cvvHash 
     } = creatingCardsServices.createCardDate(employee.fullName);
 
-    res.sendStatus(200);
+    const password = null;
+    const isVirtual = false;
+    const originalCardId = null;
+    const isBlocked = true;
+  
+    await creatingCardsServices.createCreditCard(
+      employee.id,
+      cardNum,
+      formattedName,
+      cvvHash,
+      expirationDate,
+      password,
+      isVirtual,
+      originalCardId,
+      isBlocked,
+      cardType
+    );
+
+    res.sendStatus(201);
 }
 
 function validateCardType(cardType: string) {

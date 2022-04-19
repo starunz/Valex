@@ -30,6 +30,33 @@ export function createCardDate(employeeName: string) {
     };
 }
 
+export async function createCreditCard(
+    employeeId: number,
+    number: string,
+    cardholderName: string,
+    securityCode: string,
+    expirationDate: string,
+    password: string,
+    isVirtual: boolean,
+    originalCardId: number,
+    isBlocked: boolean,
+    type: cardRepository.TransactionTypes
+  ) {
+      
+    await cardRepository.insert({
+      employeeId,
+      number,
+      cardholderName,
+      securityCode,
+      expirationDate,
+      password,
+      isVirtual,
+      originalCardId,
+      isBlocked,
+      type,
+    });
+}
+
 function formatName(employeeName: string) {
   
     const name = employeeName.toUpperCase().split(" ");
