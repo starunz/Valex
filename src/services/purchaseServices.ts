@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 
 import * as errorTypes from "../error/errorTypes.js";
 import * as businessRepository from "../repositories/businessRepository.js";
+import * as cardBalance from "../utils/cardBalanceUtils.js";
 
 export function checkingPassword(password: string, passwordHash: string) {
     if (!bcrypt.compareSync(password, passwordHash))
@@ -22,4 +23,11 @@ export function checkingBusinessType(cardType: string, businessType: string) {
       throw errorTypes.conflict(
         "Este tipo de cartão não pode ser utilizado nesta empresa"
       );
+}
+
+export async function checkingCardBalance( cardId: number, purchaseAmount: number) {
+    const balance = await cardBalance.getBalance(Number(cardId));
+
+    if (balance.balance < purchaseAmount)
+      throw errorTypes.conflict("Cartão com saldo insuficiente");
 }
