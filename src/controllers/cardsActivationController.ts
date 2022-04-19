@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import cardActivationSchema from "../schemas/cardActivationSchema.js";
 import * as errorTypes from "../error/errorTypes.js";
 import * as existingCard from "../utils/existingCard.js";
+import * as cardsActivationServices from "../services/cardsActivationServices.js";
 
 export async function cardActivation(req: Request, res: Response) {
     const { cvv, password } = req.body;
@@ -11,7 +12,8 @@ export async function cardActivation(req: Request, res: Response) {
     validateCardActivation(req.body);
 
     const card = await existingCard.checkingCardExistence(Number(cardId));
-    console.log(card)
+    
+    cardsActivationServices.checkingAtivatedCard(card.password);
 }
 
 function validateCardActivation(body: any) {
