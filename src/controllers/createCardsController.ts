@@ -17,6 +17,14 @@ export async function creating(req: Request, res: Response) {
     
     await creatingCardsServices.verifyEmployeeCards(cardType, employeeId);
 
+    const { 
+        cardNum, 
+        formattedName, 
+        expirationDate, 
+        cvv, 
+        cvvHash 
+    } = creatingCardsServices.createCardDate(employee.fullName);
+
     res.sendStatus(200);
 }
 
