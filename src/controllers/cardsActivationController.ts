@@ -14,6 +14,8 @@ export async function cardActivation(req: Request, res: Response) {
     const card = await existingCard.checkingCardExistence(Number(cardId));
     
     cardsActivationServices.checkingAtivatedCard(card.password);
+
+    cardsActivationServices.checkingAtivatedCard(card.password);
 }
 
 function validateCardActivation(body: any) {
