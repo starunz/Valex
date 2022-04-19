@@ -27,6 +27,10 @@ export async function purchase(req: Request, res: Response) {
     purchaseServices.checkingBusinessType(card.type, business.type);
 
     await purchaseServices.checkingCardBalance(Number(cardId), amount);
+
+    purchaseServices.makePurchase(card.id, business.id, amount);
+  
+    res.sendStatus(201);
 }
 
 function validatePurchase(body: any) {

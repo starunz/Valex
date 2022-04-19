@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 
 import * as errorTypes from "../error/errorTypes.js";
 import * as businessRepository from "../repositories/businessRepository.js";
+import * as paymentRepository from "../repositories/paymentRepository.js";
 import * as cardBalance from "../utils/cardBalanceUtils.js";
 
 export function checkingPassword(password: string, passwordHash: string) {
@@ -30,4 +31,13 @@ export async function checkingCardBalance( cardId: number, purchaseAmount: numbe
 
     if (balance.balance < purchaseAmount)
       throw errorTypes.conflict("Cartão com saldo insuficiente");
+}
+
+export async function makePurchase(cardId: number, businessId: number, amount: number) {
+   
+    await paymentRepository.insert({
+      cardId,
+      businessId,
+      amount
+    });
 }
