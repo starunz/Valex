@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
+
 import * as checkingEmployeeUtils from "../utils/checkingEmployeeUtils.js";
 import * as errorTypes from "../error/errorTypes.js";
+import * as creatingCardsServices from "../services/creatingCardsServices.js";
 
 export async function creating(req: Request, res: Response) {
     const { employeeId, cardType } = req.body;
@@ -12,8 +14,9 @@ export async function creating(req: Request, res: Response) {
       employeeId,
       company.id
     );
-    console.log(employee)
     
+    await creatingCardsServices.verifyEmployeeCards(cardType, employeeId);
+
     res.sendStatus(200);
 }
 
@@ -25,6 +28,6 @@ function validateCardType(cardType: string) {
       cardType !== "education" &&
       cardType !== "health"
     ) {
-      throw errorTypes.UnprocessableEntity("This card type is not valid.");
+      throw errorTypes.UnprocessableEntity("tipo de cartão inválido");
     }
 }
