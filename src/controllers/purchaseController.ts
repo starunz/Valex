@@ -4,6 +4,7 @@ import purchaseSchema from "../schemas/purchaseSchema.js";
 import * as errorTypes from "../error/errorTypes.js";
 import * as existingCard from "../utils/existingCardUtils.js";
 import * as expirationDate from "../utils/expirationDateUtils.js";
+import * as purchaseServices from "../services/purchaseServices.js"
 
 export async function purchase(req: Request, res: Response) {
     const { amount, businessId, password } = req.body;
@@ -13,9 +14,11 @@ export async function purchase(req: Request, res: Response) {
 
     const card = await existingCard.checkingCardExistence(
         Number(cardId)
-      );
+    );
     
-      expirationDate.checkingExpirationDate(card.expirationDate);
+    expirationDate.checkingExpirationDate(card.expirationDate);
+
+    purchaseServices.checkingPassword(password, card.password);
 }
 
 function validatePurchase(body: any) {
