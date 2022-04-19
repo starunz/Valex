@@ -2,9 +2,9 @@ import { Request, Response } from "express";
 
 import cardActivationSchema from "../schemas/cardActivationSchema.js";
 import * as errorTypes from "../error/errorTypes.js";
-import * as existingCard from "../utils/existingCard.js";
+import * as existingCard from "../utils/existingCardUtils.js";
 import * as cardsActivationServices from "../services/cardsActivationServices.js";
-import * as expirationDate from "../utils/expirationDate.js";
+import * as expirationDate from "../utils/expirationDateUtils.js";
 
 export async function cardActivation(req: Request, res: Response) {
     const { cvv, password } = req.body;

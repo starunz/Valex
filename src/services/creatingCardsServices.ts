@@ -5,7 +5,7 @@ import { faker } from "@faker-js/faker";
 import dayjs from "dayjs";
 import bcrypt from "bcrypt";
 
-export async function verifyEmployeeCards(type: cardRepository.TransactionTypes, employeeId: number) {
+export async function checkingEmployeeCards(type: cardRepository.TransactionTypes, employeeId: number) {
   const card = await cardRepository.findByTypeAndEmployeeId(type, employeeId);
   
   if (card) {

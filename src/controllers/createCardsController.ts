@@ -15,7 +15,7 @@ export async function creating(req: Request, res: Response) {
       company.id
     );
     
-    await creatingCardsServices.verifyEmployeeCards(cardType, employeeId);
+    await creatingCardsServices.checkingEmployeeCards(cardType, employeeId);
 
     const { 
         cardNum, 
