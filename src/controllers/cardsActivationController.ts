@@ -4,6 +4,7 @@ import cardActivationSchema from "../schemas/cardActivationSchema.js";
 import * as errorTypes from "../error/errorTypes.js";
 import * as existingCard from "../utils/existingCard.js";
 import * as cardsActivationServices from "../services/cardsActivationServices.js";
+import * as expirationDate from "../utils/expirationDate.js";
 
 export async function cardActivation(req: Request, res: Response) {
     const { cvv, password } = req.body;
@@ -18,6 +19,8 @@ export async function cardActivation(req: Request, res: Response) {
     cardsActivationServices.checkingCVV(cvv, card.securityCode);
 
     const passwordHash = cardsActivationServices.encryptPassword(password);
+
+    expirationDate.checkingExpirationDate(card.expirationDate);
 }
 
 function validateCardActivation(body: any) {
