@@ -16,6 +16,8 @@ export async function cardActivation(req: Request, res: Response) {
     cardsActivationServices.checkingAtivatedCard(card.password);
 
     cardsActivationServices.checkingCVV(cvv, card.securityCode);
+
+    const passwordHash = cardsActivationServices.encryptPassword(password);
 }
 
 function validateCardActivation(body: any) {

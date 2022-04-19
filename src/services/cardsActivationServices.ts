@@ -11,3 +11,9 @@ export function checkingCVV(cvv: string, cvvHash: string) {
     if (!bcrypt.compareSync(cvv, cvvHash))
       throw errorTypes.unauthorized("CVC incorreto");
 }
+
+export function encryptPassword(password: string) {
+    const passwordHash = bcrypt.hashSync(password, 10);
+  
+    return passwordHash;
+}
